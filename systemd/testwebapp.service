@@ -1,0 +1,19 @@
+[Unit]
+Description=Test Web Application
+After=network.target
+Wants=network.target
+
+[Service]
+User=root
+
+ExecStart=/usr/bin/java -jar /opt/testwebapp/lib/java/testwebapp-1.0.jar -p80
+
+# wait 20 seconds before trying to restart the connection
+# if it disconnects
+RestartSec=20
+
+# keep retrying no matter what
+Restart=always
+
+[Install]
+WantedBy=network-online.target
